@@ -1,6 +1,11 @@
-describe("Stepper page", ()=>{
+describe("Stepper page", {
+  retries: 0,
+  env: {
+    stepper_url: "/pages/layout/stepper"
+  }
+},()=>{
   beforeEach(()=>{
-    cy.visit('pages/layout/stepper')
+    cy.visit(Cypress.env("stepper_url"))
   })
 
   it('Vertical stepper should display correct title on each step', () => {
@@ -18,6 +23,11 @@ describe("Stepper page", ()=>{
 
     cy.get("@stepperTitle").should('have.text', "Step content #4")
     cy.get("@nextButton").should('be.disabled')
+
+    cy.get('@nextButton').matchImageSnapshot('next-button', {
+      failureThreshold: 0.2,
+      failureThresholdType: 'percent'
+    })
   });
 
   it('Vertical stepper should display correct title on each step (XPATH)', () => {
