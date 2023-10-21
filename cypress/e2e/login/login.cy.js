@@ -1,4 +1,3 @@
-
 describe('Test login form', () => {
 
     before(function () {
@@ -6,7 +5,7 @@ describe('Test login form', () => {
     });
 
     it('should login user and go to the main page', () => {
-       cy.login('annahritskova@gmail.com', 'password1', true);
+        cy.login('annahritskova@gmail.com', 'password1', true);
     });
 });
 

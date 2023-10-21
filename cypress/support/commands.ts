@@ -1,4 +1,4 @@
-//<reference types='cypress' />
+// <reference types='cypress' />
 // ***********************************************
 // This example commands.ts shows you how to
 // create various custom commands and overwrite
@@ -14,17 +14,17 @@
 declare global {
     namespace Cypress {
         interface Chainable<Subject> {
-            filterUser(filter): Chainable<JQuery<HTMLElement>>;
+            addUser(...arguments: string[]): Chainable<void>;
 
-            setUserData(data): Chainable<void>;
+            filterUser(filter: any): Chainable<JQuery<HTMLElement>>;
 
-            addUser(...arguments): Chainable<void>;
+            findUserByFilter(...arguments: string[]): Chainable<any[]>;
 
-            findUserByFilter(...arguments): Chainable<any[]>;
+            login(email: any, password: any, rememberMe: any): Chainable<void>;
 
-            modifyUser(filterData, modifyData): Chainable<void>;
+            modifyUser(filterData: any, modifyData: any): Chainable<void>;
 
-            login(email, password, rememberMe): Chainable<void>;
+            setUserData(data: any): Chainable<void>;
         }
     }
 }
@@ -32,9 +32,9 @@ Cypress.Commands.add('filterUser', function (filter) {
     cy.get('table tr.ng2-smart-filters').find('th')
         .find('input-filter').find('input')
         .each(($filterField, $index) => {
-            cy.get($filterField).clear().should('be.empty');
+            cy.wrap($filterField).clear().should('be.empty');
             if (filter[$index]) {
-                cy.get($filterField).type(filter[$index], {delay: 50});
+                cy.wrap($filterField).type(filter[$index], {delay: 50});
             }
         });
     return cy.get('table tbody tr.ng-star-inserted').first();
@@ -44,7 +44,7 @@ Cypress.Commands.add('setUserData', function (data) {
         .find('input-editor')
         .find('input').each(($field, $index) => {
         if (data[$index]) {
-            cy.get($field).clear().type(data[$index], {delay: 50});
+            cy.wrap($field).clear().type(data[$index], {delay: 50});
         }
     });
 });
@@ -60,7 +60,7 @@ Cypress.Commands.add('addUser', function () {
 });
 Cypress.Commands.add('findUserByFilter', function () {
     const filterData = [...arguments];
-    let userInfo = [];
+    const userInfo = [];
 
     cy.filterUser(filterData).find('td').find('ng2-smart-table-cell')
         .each(($el) => {
@@ -71,10 +71,11 @@ Cypress.Commands.add('findUserByFilter', function () {
 
 Cypress.Commands.add('modifyUser', function (filterData, modifyData) {
     cy.filterUser(filterData).then($el => {
-        cy.get($el).find('td').find('a.ng2-smart-action-edit-edit').click();
-        cy.setUserData(modifyData);
+        cy.wrap($el).find('td').find('a.ng2-smart-action-edit-edit').click().then(() => {
+            cy.setUserData(modifyData);
+        });
         cy.get('table tbody tr.ng-star-inserted').find('td')
-            .find('ng2-st-tbody-create-cancel').click();
+            .find('a.ng2-smart-action-edit-save').click();
     });
 });
 
