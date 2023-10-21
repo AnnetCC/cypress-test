@@ -5,6 +5,7 @@ export default defineConfig({
     pageLoadTimeout: 5000,
     baseUrl: 'http://localhost:4200',
     specPattern: 'cypress/e2e/**/*.cy.{js,jsx,ts,tsx}',
+    testIsolation: false,
     setupNodeEvents(on, config) {
       // implement node event listeners here
     },
