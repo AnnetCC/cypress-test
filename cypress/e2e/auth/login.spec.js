@@ -26,7 +26,9 @@ describe("Log in", ()=>{
     const loginPage = new LoginPage()
 
     loginPage.navigate()
-    loginPage.login("staran@test.com", "lasjdljiashbdliasb", true)
+    loginPage.fill("staran@test.com", "lasjdljiashbdliasb", true)
+    loginPage.clickLoginButton()
+
     // loginPage.fill("staran@test.com", "lasjdljiashbdliasb", true)
     // loginPage.clickLoginButton()
 
