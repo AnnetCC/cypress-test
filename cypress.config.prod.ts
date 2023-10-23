@@ -1,10 +1,12 @@
 import { defineConfig } from 'cypress';
+import baseConfig from './cypress.config.local';
 
 export default defineConfig({
+  ...baseConfig,
+  retries: 0,
   e2e: {
-    pageLoadTimeout: 5000,
-    baseUrl: 'http://localhost:4200',
-    specPattern: 'cypress/e2e/**/*.spec.{js,jsx,ts,tsx}',
+    ...baseConfig.e2e,
+    baseUrl: 'https://google.com',
     setupNodeEvents(on, config) {
       // implement node event listeners here
     },

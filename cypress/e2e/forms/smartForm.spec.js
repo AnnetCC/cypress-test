@@ -64,6 +64,7 @@ describe("Smart form page", ()=>{
 
   it("find by id", ()=>{
     cy.visit('pages/tables/smart-table')
+    cy.pause()
     cy.get("table tbody tr.ng-star-inserted").find("td").filter(':contains("5")').last().parent().find("a.ng2-smart-action-edit-edit").click()
   })
 })
