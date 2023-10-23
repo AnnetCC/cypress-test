@@ -1,0 +1,124 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 2,
+    "passes": 2,
+    "pending": 0,
+    "failures": 0,
+    "start": "2023-10-19T17:38:59.671Z",
+    "end": "2023-10-19T17:39:04.214Z",
+    "duration": 4543,
+    "testsRegistered": 2,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "ff30a7a6-d5b8-4b9d-9c4e-6876af23a7e4",
+      "title": "",
+      "fullFile": "cypress/e2e/forms/smartForm.spec.js",
+      "file": "cypress/e2e/forms/smartForm.spec.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "39acb6b8-8c39-4c3e-897c-8dadbf5909bb",
+          "title": "Smart form page",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "should display valid users",
+              "fullTitle": "Smart form page should display valid users",
+              "timedOut": null,
+              "duration": 2907,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit('pages/tables/smart-table');\nconst expectedUsers = [{\n  \"id\": \"1\",\n  \"firstName\": \"Mark\"\n}, {\n  \"id\": \"2\",\n  \"firstName\": \"Jacob\"\n}, {\n  \"id\": \"3\",\n  \"firstName\": \"Larry\"\n}, {\n  \"id\": \"4\",\n  \"firstName\": \"John\"\n}, {\n  \"id\": \"5\",\n  \"firstName\": \"Jack\"\n}, {\n  \"id\": \"6\",\n  \"firstName\": \"Ann\"\n}, {\n  \"id\": \"7\",\n  \"firstName\": \"Barbara\"\n}, {\n  \"id\": \"8\",\n  \"firstName\": \"Sevan\"\n}, {\n  \"id\": \"9\",\n  \"firstName\": \"Ruben\"\n}, {\n  \"id\": \"10\",\n  \"firstName\": \"Karen\"\n}];\nconst users = [];\ncy.get(\"table tbody tr.ng-star-inserted\").each($el => {\n  cy.wrap($el).find('td').then($cells => {\n    const user = {\n      id: $cells.eq(1).text(),\n      firstName: $cells.eq(2).text()\n    };\n    users.push(user);\n  });\n}).then(() => {\n  cy.log(users);\n  cy.wrap(users).should('deep.equal', expectedUsers);\n});",
+              "err": {},
+              "uuid": "51b8c0ab-7808-4354-8315-5d8512da2ec1",
+              "parentUUID": "39acb6b8-8c39-4c3e-897c-8dadbf5909bb",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "find by id",
+              "fullTitle": "Smart form page find by id",
+              "timedOut": null,
+              "duration": 1446,
+              "state": "passed",
+              "speed": "fast",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit('pages/tables/smart-table');\ncy.get(\"table tbody tr.ng-star-inserted\").find(\"td\").filter(':contains(\"5\")').last().parent().find(\"a.ng2-smart-action-edit-edit\").click();",
+              "err": {},
+              "uuid": "02e9d5a0-8bd6-4873-8624-0b0c94f8ba73",
+              "parentUUID": "39acb6b8-8c39-4c3e-897c-8dadbf5909bb",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "51b8c0ab-7808-4354-8315-5d8512da2ec1",
+            "02e9d5a0-8bd6-4873-8624-0b0c94f8ba73"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 4353,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}

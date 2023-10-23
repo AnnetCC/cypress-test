@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="6.576" tests="1" failures="1">
+  <testsuite name="Root Suite" timestamp="2023-10-19T14:39:49" tests="0" file="cypress/e2e/stepper/stepper.spec.js" time="0.000" failures="0">
+  </testsuite>
+  <testsuite name="Stepper page" timestamp="2023-10-19T14:39:49" tests="1" time="6.570" failures="1">
+    <testcase name="Stepper page modal-overlays stepper" time="0.000" classname="modal-overlays stepper">
+      <failure message="Timed out retrying after 4000ms: Expected to find element: `nb-card _ngcontent-ika-c28`, but never found it." type="AssertionError"><![CDATA[AssertionError: Timed out retrying after 4000ms: Expected to find element: `nb-card _ngcontent-ika-c28`, but never found it.
+    at Context.eval (webpack://ngx-admin/./cypress/e2e/stepper/stepper.spec.js:48:43)]]></failure>
+    </testcase>
+  </testsuite>
+</testsuites>
