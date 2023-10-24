@@ -36,6 +36,8 @@
 //   }
 // }
 require('cypress-xpath');
+import '@bahmutov/cy-api';
+
 
 Cypress.Commands.add('login', function(email, password, rememberMe) {
   cy.visit('auth/login');
@@ -49,4 +51,15 @@ Cypress.Commands.add('login', function(email, password, rememberMe) {
 
   cy.get('form button[status="primary"]').click();
   cy.url().should('contain', '/pages');
+});
+
+
+Cypress.Commands.overwrite('visit', (originalVisit, url) => {
+  originalVisit({
+    url,
+    auth: {
+      username: 'guest',
+      password: 'welcome2qauto',
+    },
+  });
 });

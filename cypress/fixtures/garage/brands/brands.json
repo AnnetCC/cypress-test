@@ -1,0 +1,15 @@
+{
+  "status": "ok",
+  "data": [
+    {
+      "id": 1,
+      "title": "Deawoo LanosDeawoo LanosDeawoo LanosDeawoo LanosDeawoo LanosDeawoo LanosDeawoo LanosDeawoo LanosDeawoo LanosDeawoo LanosDeawoo LanosDeawoo Lanos",
+      "logoFilename": "lanos.png"
+    },
+    {
+      "id": 2,
+      "title": "Kia",
+      "logoFilename": "kia.png"
+    }
+  ]
+}
