@@ -11,23 +11,7 @@
 //
 //
 // -- This is a parent command --
-declare global {
-    namespace Cypress {
-        interface Chainable<Subject> {
-            addUser(...arguments: string[]): Chainable<void>;
 
-            filterUser(filter: any): Chainable<JQuery<HTMLElement>>;
-
-            findUserByFilter(...arguments: string[]): Chainable<any[]>;
-
-            login(email: any, password: any, rememberMe: any): Chainable<void>;
-
-            modifyUser(filterData: any, modifyData: any): Chainable<void>;
-
-            setUserData(data: any): Chainable<void>;
-        }
-    }
-}
 Cypress.Commands.add('filterUser', function (filter) {
     cy.get('table tr.ng2-smart-filters').find('th')
         .find('input-filter').find('input')
@@ -94,17 +78,15 @@ Cypress.Commands.add('login', function (email, password, rememberMe) {
     cy.get('form button').should('be.enabled').click();
     cy.url().should('equal', 'http://localhost:4200/pages');
 });
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
-import {Command} from '@angular/cli/models/command';
+    Cypress.Commands.add('verifyRequest', function (request, expectedStatus, isNegative) {
+        cy.request(request)
+            .then(response => {
+                if (isNegative) {
+                    cy.wrap(response).its('status').should('equal', expectedStatus);
+                    return;
+                }
+            cy.wrap(response).its('status').should('equal', expectedStatus);
+            return cy.wrap(response).its('body');
+        });
+    });

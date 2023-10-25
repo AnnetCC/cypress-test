@@ -14,18 +14,28 @@
 // ***********************************************************
 
 // Import commands.js using ES2015 syntax:
-import './commands'
+import './commands';
+export {};
+
+declare global {
+    namespace Cypress {
+        interface Chainable<Subject> {
+            addUser(...arguments: string[]): Chainable<void>;
+
+            filterUser(filter: any): Chainable<JQuery<HTMLElement>>;
+
+            findUserByFilter(...arguments: string[]): Chainable<any[]>;
+
+            login(email: any, password: any, rememberMe: any): Chainable<void>;
+
+            modifyUser(filterData: any, modifyData: any): Chainable<void>;
+
+            setUserData(data: any): Chainable<void>;
+
+            verifyRequest(...arguments): Chainable<Response<any>['body']>;
+        }
+    }
+}
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
-
-
-import {addMatchImageSnapshotCommand} from '@simonsmith/cypress-image-snapshot/command';
-
-addMatchImageSnapshotCommand();
-
-// can also add any default options to be used
-// by all instances of `matchImageSnapshot`
-addMatchImageSnapshotCommand({
-  failureThreshold: 0.2,
-});
